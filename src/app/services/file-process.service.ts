@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { read, utils } from 'xlsx';
 import { InputData } from '../models/input-data.model';
 
@@ -6,7 +7,7 @@ import { InputData } from '../models/input-data.model';
   providedIn: 'root',
 })
 export class FileProcessService {
-  result: InputData[] = [];
+  result: BehaviorSubject<InputData[]> = new BehaviorSubject<InputData[]>([]);
 
   constructor() {}
 
@@ -23,13 +24,8 @@ export class FileProcessService {
       const workbook = read(bstr, { type: 'binary' });
       const first_sheet_name = workbook.SheetNames[0];
       const worksheet = workbook.Sheets[first_sheet_name];
-      this.result = utils.sheet_to_json(worksheet);
-      console.log(this.result);
+      this.result.next(utils.sheet_to_json(worksheet));
     };
     fileReader.readAsArrayBuffer(fileUploaded);
-  }
-
-  displayInputFile(): InputData[] {
-    return this.result;
   }
 }
