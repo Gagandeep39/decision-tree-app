@@ -1,5 +1,22 @@
 :host {
-  background-color: rgb(255, 0, 170);
   width: 50%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+table {
+  width: 80%;
+  font-size: large;
+}
+
+td {
+  text-align: center;
+}
+
+thead {
+  text-transform: uppercase;
+  padding: 4px;
+  font-weight: bold;
 }
