@@ -1,3 +1,8 @@
-<div class="child">
-  <p>file-upload works!</p>
-</div>
+<label for="file-upload" class="custom-file-upload"> Upload File </label>
+<input
+  id="file-upload"
+  type="file"
+  (change)="onFileChange($event)"
+  accept=".xlsx"
+/>
+<p>{{ nameOfFile }}</p>
